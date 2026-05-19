@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+jinja2
+reportlab
+openai
+python-multipart
+requests
+beautifulsoup4
+resend
+python-dotenv
+groq
