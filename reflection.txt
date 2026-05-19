@@ -1,0 +1,33 @@
+PROJECT REFLECTION
+
+This project was designed to automate the lead intake and company audit workflow typically performed manually in consulting, SaaS, and B2B businesses.
+
+The primary goal was to build a complete end-to-end automation system that could:
+- collect lead information,
+- enrich company data,
+- generate personalized business insights,
+- create a professional PDF report,
+- and automatically email the report to the user.
+
+One of the major challenges faced during development was integrating multiple external services together reliably. Initially, Gemini API quota and model compatibility issues caused failures in AI generation. This was later solved by switching to the Groq API with the Llama 3.3 70B model, which provided more stable and faster inference.
+
+Another challenge was PDF formatting and layout management using ReportLab. Large AI-generated responses initially caused layout overflow errors. The solution involved redesigning the PDF structure with improved spacing, dynamic pagination, styled section formatting, and simplified bordered layouts.
+
+Several engineering tradeoffs were made:
+- Website scraping was kept lightweight using BeautifulSoup instead of more advanced browser automation tools to maintain simplicity and speed.
+- AI prompts were optimized for detailed consulting-style output while keeping token usage manageable.
+- The frontend was intentionally lightweight and minimal for faster implementation and clarity.
+
+Limitations:
+- Website scraping quality depends on publicly accessible content.
+- AI-generated insights may vary depending on website quality and available data.
+- No persistent database storage is currently implemented.
+- Some websites may block scraping.
+
+Future improvements would include:
+- Google Sheets lead tracking
+- Google Drive PDF archiving
+- Advanced company enrichment APIs
+- Admin analytics dashboard
+
+Overall, the project successfully demonstrates a complete AI-powered workflow automation pipeline with minimal human intervention.
