@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Company Audit</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #0f172a, #1e293b);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            color: black;
+            width: 420px;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        p {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 16px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .status {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>AI Company Audit</h1>
+
+    <p>
+        Get an instant AI-generated business audit report.
+    </p>
+
+    <form id="leadForm">
+
+        <input
+            type="text"
+            id="name"
+            placeholder="Your Name"
+            required
+        />
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Your Email"
+            required
+        />
+
+        <input
+            type="text"
+            id="company"
+            placeholder="Company Name"
+            required
+        />
+
+        <input
+            type="text"
+            id="website"
+            placeholder="https://company.com"
+            required
+        />
+
+        <button type="submit">
+            Generate Audit Report
+        </button>
+
+    </form>
+
+    <div class="status" id="status"></div>
+
+</div>
+
+<script>
+
+document
+.getElementById("leadForm")
+.addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    const status = document.getElementById("status");
+
+    status.innerHTML = "Generating AI audit report...";
+
+    const data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        company: document.getElementById("company").value,
+        website: document.getElementById("website").value
+    };
+
+    try {
+
+        const response = await fetch(
+            "http://127.0.0.1:8000/submit-lead",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            }
+        );
+
+        const result = await response.json();
+
+        status.innerHTML = "✅ Audit Report Generated & Emailed";
+
+    } catch (error) {
+
+        status.innerHTML = "❌ Something went wrong";
+
+        console.error(error);
+    }
+
+});
+
+</script>
+
+</body>
+</html>
