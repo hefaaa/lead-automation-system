@@ -1,5 +1,5 @@
 # lead-automation-system
-# lead-automation
+
 # AI-Powered Lead Automation System
 
 ## Overview
